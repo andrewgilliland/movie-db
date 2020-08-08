@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import Overdrive from "react-overdrive";
 import { Poster } from "./Movie";
 
 const MovieWrapper = styled.div`
   position: relative;
-  padding-top: 50vh;
+  padding-top: 60vh;
   background: url(${(props) => props.backdrop}) no-repeat;
   background-size: cover;
   background-position: bottom;
@@ -51,12 +52,21 @@ const MovieDetail = (props) => {
 
   console.log(movie);
 
-  const { backdrop_path, poster_path, title, release_date, overview } = movie;
+  const {
+    backdrop_path,
+    id,
+    poster_path,
+    title,
+    release_date,
+    overview,
+  } = movie;
 
   return (
     <MovieWrapper backdrop={`${BACKDROP_PATH}${backdrop_path}`}>
       <MovieInfo>
-        <Poster src={`${POSTER_PATH}${poster_path}`} alt={title} />
+        <Overdrive id={id}>
+          <Poster src={`${POSTER_PATH}${poster_path}`} alt={title} />
+        </Overdrive>
         <div>
           <h1>{title}</h1>
           <h3>{release_date}</h3>
